@@ -32,6 +32,11 @@ const {
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
           if (!user) {
+            // If there's an invite or recovery token in the URL, open the modal
+            var hash = window.location.hash;
+            if (hash && (hash.includes("invite_token") || hash.includes("confirmation_token") || hash.includes("recovery_token"))) {
+              window.netlifyIdentity.open();
+            }
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
