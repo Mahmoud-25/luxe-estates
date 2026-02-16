@@ -29,20 +29,36 @@ const {
   <body class="bg-dark text-light">
     <slot />
     <script is:inline>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            // If there's an invite or recovery token in the URL, open the modal
-            var hash = window.location.hash;
-            if (hash && (hash.includes("invite_token") || hash.includes("confirmation_token") || hash.includes("recovery_token"))) {
-              window.netlifyIdentity.open();
+      (function() {
+        var defined = false;
+        function handleIdentity() {
+          if (defined) return;
+          defined = true;
+          var identity = window.netlifyIdentity;
+          if (!identity) return;
+
+          identity.on("init", function(user) {
+            if (!user) {
+              identity.on("login", function() {
+                document.location.href = "/admin/";
+              });
             }
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
+          });
+
+          // Handle invite/confirmation/recovery tokens
+          var hash = document.location.hash || "";
+          if (hash.match(/(invite|confirmation|recovery)_token/)) {
+            // Wait for widget to be fully ready, then open signup
+            setTimeout(function() {
+              identity.open("signup");
+            }, 500);
           }
-        });
-      }
+        }
+
+        // Try immediately and also on load
+        handleIdentity();
+        window.addEventListener("load", handleIdentity);
+      })();
     </script>
   </body>
 </html>
