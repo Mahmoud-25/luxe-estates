@@ -1,13 +1,14 @@
 ---
-title: "Central Park Residence"
-description: "Sophisticated apartment overlooking Central Park. Classic elegance meets modern comfort with premium amenities."
-price: 3200000
-location: "Upper East Side, NY"
+title: Central Park Residence2
+description: Sophisticated apartment overlooking Central Park. Classic elegance
+  meets modern comfort with premium amenities.
+price: 31
+location: Upper East Side, NY
 bedrooms: 5
 bathrooms: 4
 area: 400
-status: "available"
-image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
+status: available
+image: https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop
 featured: true
 order: 3
 ---
