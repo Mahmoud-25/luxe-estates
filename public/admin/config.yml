@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "apartments"
+    label: "Apartments"
+    folder: "src/content/apartments"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price (USD)", name: "price", widget: "number", value_type: "int" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Bedrooms", name: "bedrooms", widget: "number", value_type: "int", min: 0, max: 20 }
+      - { label: "Bathrooms", name: "bathrooms", widget: "number", value_type: "int", min: 0, max: 20 }
+      - { label: "Area (sqm)", name: "area", widget: "number", value_type: "int" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Available", value: "available" }
+          - { label: "Sold", value: "sold" }
+          - { label: "Rented", value: "rented" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: true }
+      - { label: "Display Order", name: "order", widget: "number", value_type: "int", default: 0 }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "src/content/settings/general.md"
+        fields:
+          - { label: "Hero Headline", name: "hero_headline", widget: "string" }
+          - { label: "Hero Subheadline", name: "hero_subheadline", widget: "text" }
+          - { label: "About Title", name: "about_title", widget: "string" }
+          - { label: "About Description", name: "about_description", widget: "text" }
+          - { label: "Phone", name: "contact_phone", widget: "string" }
+          - { label: "Email", name: "contact_email", widget: "string" }
+          - { label: "Address", name: "contact_address", widget: "string" }
+          - { label: "WhatsApp Number", name: "contact_whatsapp", widget: "string" }

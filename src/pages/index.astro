@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Properties from "../components/Properties.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const settingsEntries = await getCollection("settings");
+const settings = settingsEntries[0]?.data || {};
+---
+
+<Layout>
+  <Navbar />
+  <Hero
+    headline={settings.hero_headline}
+    subheadline={settings.hero_subheadline}
+  />
+  <Properties />
+  <About
+    title={settings.about_title}
+    description={settings.about_description}
+  />
+  <Contact
+    phone={settings.contact_phone}
+    email={settings.contact_email}
+    address={settings.contact_address}
+    whatsapp={settings.contact_whatsapp}
+  />
+  <Footer />
+</Layout>

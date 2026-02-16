@@ -1,0 +1,79 @@
+---
+interface Props {
+  headline?: string;
+  subheadline?: string;
+}
+
+const {
+  headline = "Find Your Dream Home",
+  subheadline = "Discover luxury living spaces crafted for those who demand the extraordinary. Premium apartments in the most sought-after locations.",
+} = Astro.props;
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-dark via-primary to-secondary"></div>
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 mb-8">
+      <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+      <span class="text-muted text-sm tracking-widest uppercase">Premium Real Estate</span>
+    </div>
+
+    <h1
+      class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6"
+      style="font-family: 'Playfair Display', serif;"
+    >
+      {headline.split(" ").map((word, i) =>
+        i === headline.split(" ").length - 1 ? (
+          <span class="text-accent">{word}</span>
+        ) : (
+          <span>{word} </span>
+        )
+      )}
+    </h1>
+
+    <p class="text-muted text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+      {subheadline}
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="#properties"
+        class="bg-accent hover:bg-accent-light text-dark px-8 py-3 text-sm font-semibold tracking-wide transition-colors w-full sm:w-auto"
+      >
+        View Properties
+      </a>
+      <a
+        href="#contact"
+        class="border border-white/20 hover:border-accent text-light hover:text-accent px-8 py-3 text-sm font-semibold tracking-wide transition-colors w-full sm:w-auto"
+      >
+        Schedule a Visit
+      </a>
+    </div>
+
+    <div class="mt-16 grid grid-cols-3 gap-8 max-w-md mx-auto">
+      <div>
+        <div class="text-3xl font-bold text-accent" style="font-family: 'Playfair Display', serif;">50+</div>
+        <div class="text-muted text-sm mt-1">Properties</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-accent" style="font-family: 'Playfair Display', serif;">200+</div>
+        <div class="text-muted text-sm mt-1">Happy Clients</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-accent" style="font-family: 'Playfair Display', serif;">15+</div>
+        <div class="text-muted text-sm mt-1">Years Exp.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>

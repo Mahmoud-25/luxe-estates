@@ -1,0 +1,61 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "About Luxe Estates",
+  description = "With over 15 years of experience in premium real estate, Luxe Estates has been connecting discerning buyers with exceptional properties. Our dedicated team of professionals ensures a seamless experience from first viewing to final handover. We believe everyone deserves a space that inspires them, and we work tirelessly to make that vision a reality.",
+} = Astro.props;
+---
+
+<section id="about" class="py-20 sm:py-28 bg-secondary/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-accent text-sm font-semibold tracking-widest uppercase">Who We Are</span>
+        <h2
+          class="text-3xl sm:text-4xl font-bold text-light mt-3 mb-6"
+          style="font-family: 'Playfair Display', serif;"
+        >
+          {title}
+        </h2>
+        <p class="text-muted leading-relaxed text-lg mb-8">
+          {description}
+        </p>
+
+        <div class="grid grid-cols-2 gap-6">
+          <div class="border border-white/5 p-5">
+            <div class="text-accent text-2xl font-bold mb-1" style="font-family: 'Playfair Display', serif;">500+</div>
+            <div class="text-muted text-sm">Properties Sold</div>
+          </div>
+          <div class="border border-white/5 p-5">
+            <div class="text-accent text-2xl font-bold mb-1" style="font-family: 'Playfair Display', serif;">98%</div>
+            <div class="text-muted text-sm">Client Satisfaction</div>
+          </div>
+          <div class="border border-white/5 p-5">
+            <div class="text-accent text-2xl font-bold mb-1" style="font-family: 'Playfair Display', serif;">15+</div>
+            <div class="text-muted text-sm">Years Experience</div>
+          </div>
+          <div class="border border-white/5 p-5">
+            <div class="text-accent text-2xl font-bold mb-1" style="font-family: 'Playfair Display', serif;">25</div>
+            <div class="text-muted text-sm">Expert Agents</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="aspect-[4/5] bg-gradient-to-br from-primary to-secondary border border-white/5 flex items-center justify-center">
+          <div class="text-center p-8">
+            <div class="text-6xl mb-4" style="font-family: 'Playfair Display', serif;">
+              <span class="text-accent">L</span><span class="text-light">E</span>
+            </div>
+            <div class="text-muted text-sm tracking-widest uppercase">Est. 2010</div>
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-accent/30"></div>
+      </div>
+    </div>
+  </div>
+</section>

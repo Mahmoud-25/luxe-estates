@@ -1,0 +1,40 @@
+---
+import PropertyCard from "./PropertyCard.astro";
+import { getCollection } from "astro:content";
+
+const apartments = await getCollection("apartments");
+const sorted = apartments.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+---
+
+<section id="properties" class="py-20 sm:py-28 bg-dark">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="text-accent text-sm font-semibold tracking-widest uppercase">Our Portfolio</span>
+      <h2
+        class="text-3xl sm:text-4xl font-bold text-light mt-3"
+        style="font-family: 'Playfair Display', serif;"
+      >
+        Featured Properties
+      </h2>
+      <p class="text-muted mt-4 max-w-xl mx-auto">
+        Handpicked luxury properties that define exceptional living.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sorted.map((apt) => (
+        <PropertyCard
+          title={apt.data.title}
+          description={apt.data.description}
+          price={apt.data.price}
+          location={apt.data.location}
+          bedrooms={apt.data.bedrooms}
+          bathrooms={apt.data.bathrooms}
+          area={apt.data.area}
+          status={apt.data.status}
+          image={apt.data.image}
+        />
+      ))}
+    </div>
+  </div>
+</section>
