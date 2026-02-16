@@ -1,8 +1,8 @@
 ---
-title: Central Park Residence2
+title: Central Park Home
 description: Sophisticated apartment overlooking Central Park. Classic elegance
   meets modern comfort with premium amenities.
-price: 31
+price: 30999
 location: Upper East Side, NY
 bedrooms: 5
 bathrooms: 4
