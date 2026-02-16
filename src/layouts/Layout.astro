@@ -30,34 +30,35 @@ const {
     <slot />
     <script is:inline>
       (function() {
-        var defined = false;
-        function handleIdentity() {
-          if (defined) return;
-          defined = true;
-          var identity = window.netlifyIdentity;
-          if (!identity) return;
+        var hash = document.location.hash || "";
+        var hasToken = hash.match(/(invite|confirmation|recovery)_token/);
 
-          identity.on("init", function(user) {
-            if (!user) {
-              identity.on("login", function() {
-                document.location.href = "/admin/";
-              });
+        function waitForIdentity(callback) {
+          var attempts = 0;
+          var check = setInterval(function() {
+            attempts++;
+            if (window.netlifyIdentity) {
+              clearInterval(check);
+              callback(window.netlifyIdentity);
+            } else if (attempts > 50) {
+              clearInterval(check);
             }
-          });
-
-          // Handle invite/confirmation/recovery tokens
-          var hash = document.location.hash || "";
-          if (hash.match(/(invite|confirmation|recovery)_token/)) {
-            // Wait for widget to be fully ready, then open signup
-            setTimeout(function() {
-              identity.open("signup");
-            }, 500);
-          }
+          }, 100);
         }
 
-        // Try immediately and also on load
-        handleIdentity();
-        window.addEventListener("load", handleIdentity);
+        waitForIdentity(function(identity) {
+          // Redirect to admin after login
+          identity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+
+          // If there's a token in the URL, open the modal after init
+          if (hasToken) {
+            identity.on("init", function() {
+              identity.open();
+            });
+          }
+        });
       })();
     </script>
   </body>
